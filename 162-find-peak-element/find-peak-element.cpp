@@ -2,7 +2,7 @@ class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
         if(nums.size() == 1) return 0;
-        
+
         int st = 0, end = nums.size() - 1;
 
         while(st <= end) {
@@ -16,7 +16,7 @@ public:
                     st = mid + 1;
                 else // peak is on left
                     end = mid - 1; 
-        }
+            }
         
             else if(mid == 0)   
                 return (nums[0] > nums[1]) ? 0 : 1;
