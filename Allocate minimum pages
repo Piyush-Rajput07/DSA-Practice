@@ -1,0 +1,45 @@
+class Solution {
+  public:
+    bool isValid(vector<int> &arr, int n, int k, int mid) {
+        int stu = 1, pages = 0;
+        
+        for(int i=0; i<n; i++) {
+            if(arr[i] > mid) { //not possible to allocate 
+                return false;
+            }
+            if(pages + arr[i] <= mid) { // mid => max no. of allowed pages 
+                pages += arr[i];
+            }
+            else {
+                stu++;
+                pages = arr[i];
+            }
+        }
+        
+        return (stu <= k) ? true : false;
+    }
+    int findPages(vector<int> &arr, int k) {
+        int n = arr.size();
+        int sum = 0;
+        if(k > n) return -1;
+        
+        for(int i=0; i<n; i++) {
+            sum += arr[i];
+        }
+        
+        int st = *max_element(arr.begin(), arr.end()), end = sum, ans = -1; // if allocation is not possible 
+        
+        while(st <= end) {
+            int mid = st + (end - st)/2;
+            
+            if(isValid(arr, n, k, mid)){//valid
+                ans = mid;
+                end = mid - 1;
+            }
+            else{ //Invalid
+                st = mid + 1;
+            }
+        }
+        return ans;
+    }
+};
