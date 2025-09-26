@@ -1,0 +1,28 @@
+class Solution {
+  public:
+    vector<int> twoOddNum(vector<int>& arr) {
+        int n = arr.size();
+        int x = arr[0];
+        for(int i=1; i<n; i++) {
+            x ^= arr[i];
+        }
+        
+        int k = (x & (~(x-1))); // finding the righmost set bit 
+        int res1 = 0, res2 = 0;
+        
+        for(int i=0; i<n; i++) { 
+            if((arr[i]&k) != 0) // dividing into grps acc to k
+                res1 ^= arr[i];
+            else 
+                res2 ^= arr[i];
+        }
+        
+        vector<int> res;
+        res.push_back(res1);
+        res.push_back(res2);
+        
+        sort(res.rbegin(), res.rend()); //sorting in decreasing order
+        
+        return res;
+    }
+};
