@@ -13,14 +13,12 @@ public:
                 count2++;
         }
         //overwriting 0,1 & 2;
-        for(int i=0; i<count0; i++) {
-            nums[i] = 0;
-        }
-        for(int i=(count0); i<(count0+count1); i++) {
-            nums[i] = 1;
-        }
-        for(int i=(count0+count1); i<n; i++) {
-            nums[i] = 2;
-        }
+        int idx = 0;
+        for(int i=0; i<count0; i++) 
+            nums[idx++] = 0;
+        for(int i=0; i<count1; i++) 
+            nums[idx++] = 1;
+        for(int i=0; i<count2; i++)
+            nums[idx++] = 2;
     }
 };
