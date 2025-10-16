@@ -3,15 +3,20 @@ public:
     int majorityElement(vector<int>& nums) {
         int n = nums.size();
 
-        for(int i=0; i<n; i++) {
-            int freq = 0;
-            for(int j=0; j<n; j++) {
-                if(nums[i] == nums[j]) {
-                    freq++;
-                }
+        sort(nums.begin(), nums.end());
+        int freq = 1, ans = nums[0];
+
+        for(int i=1; i<n; i++) {
+            if(nums[i] == ans) {
+                freq++;
             }
-            if(freq > n/2) return nums[i];
+            else {
+                freq = 1;
+                ans = nums[i];
+            }
+
+            if(freq > n/2) return ans;
         }
-        return -1;
+        return ans;
     }
 };
