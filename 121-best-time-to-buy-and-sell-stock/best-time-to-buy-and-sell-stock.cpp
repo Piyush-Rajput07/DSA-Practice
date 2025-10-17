@@ -7,7 +7,6 @@ public:
             if(prices[i] > bestBuy) {
                 maxProf = max(maxProf, prices[i] - bestBuy);
             }
-
             bestBuy = min(bestBuy, prices[i]);
         }
 
