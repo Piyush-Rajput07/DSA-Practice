@@ -28,7 +28,7 @@ public:
                 ans = mid;
                 end = mid - 1;
             }
-            else { //we'l find the min value on right
+            else { //we'll find the min value on right
                 st = mid + 1;
             }
         }
