@@ -2,27 +2,27 @@ class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
         int n = nums.size();
-        int pivot = -1;
+        int piv = -1;
 
-        for(int i=n-2; i>=0; i--) { //finding pivot
+        for(int i=n-2; i>=0; i--) { //Finding the pivot
             if(nums[i] < nums[i+1]) {
-                pivot = i;
+                piv = i;
                 break;
             }
         }
-
-        if(pivot == -1) { //no next lexicographical arrangement possible
-            reverse(nums.begin(), nums.end());
+        
+        if(piv == -1) {
+            sort(nums.begin(), nums.end());
             return;
         }
-
-        for(int i=n-1; i>pivot; i--) {
-            if(nums[i] > nums[pivot]) {
-                swap(nums[i], nums[pivot]);
-                break;
+        else {
+            for(int i=n-1; i>piv; i--) { //swapping with next greatest no.
+                if(nums[i] > nums[piv]) {
+                    swap(nums[i], nums[piv]);
+                    break;
+                }
             }
         }
-
-        reverse(nums.begin() + pivot + 1, nums.end());
+        reverse(nums.begin() + piv + 1, nums.end());
     }
 };
