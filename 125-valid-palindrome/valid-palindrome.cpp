@@ -2,11 +2,11 @@ class Solution {
 public:
     bool isPalindrome(string s) {
         int st = 0, end = s.length() - 1;
-        
+
         while(st < end) {
             if(!isalnum(s[st])) {
                 st++;
-                continue; //to check if next ch is alphanum or not
+                continue; //to check if next alphabet is also alnum or not
             }
             if(!isalnum(s[end])) {
                 end--;
