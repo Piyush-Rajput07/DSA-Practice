@@ -9,11 +9,12 @@ public:
         return true;
     }
     bool checkInclusion(string s1, string s2) {
+        //freq of s1
         int freq[26] = {0};
         for(int i=0; i<s1.length(); i++) {
-            freq[s1[i] - 'a']++;
+            freq[s1[i]-'a']++;
         }
-
+        //freq of window in s2
         int windSize = s1.length();
 
         for(int i=0; i<s2.length(); i++) {
@@ -21,14 +22,15 @@ public:
             int windFreq[26] = {0};
 
             while(windIdx < windSize && idx < s2.length()) {
-                windFreq[s2[idx] - 'a']++;
+                windFreq[s2[idx]-'a']++;
                 windIdx++; idx++;
             }
-
+            //check if windFreq & Freq is same
             if(isFreqSame(freq, windFreq)) {
                 return true;
             }
         }
+        
         return false;
     }
 };
