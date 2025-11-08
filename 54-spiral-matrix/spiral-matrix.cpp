@@ -1,35 +1,35 @@
 class Solution {
 public:
-    vector<int> spiralOrder(vector<vector<int>>& matrix) {
-        int m = matrix.size(), n = matrix[0].size();
+    vector<int> spiralOrder(vector<vector<int>>& mat) {
+        int m = mat.size(), n = mat[0].size();
+        int sRow = 0, eRow = m - 1, sCol = 0, eCol = n - 1;
         vector<int> ans;
 
-        int sRow = 0, sCol = 0, eRow = m - 1, eCol = n - 1;
-        while((sRow <= eRow) && (sCol <= eCol)) { 
-            //top
-            for(int j=sCol; j<=eCol; j++) {
-                ans.push_back(matrix[sRow][j]);
+        while(sRow <= eRow && sCol <= eCol) {
+            //Top
+            for(int i=sCol; i<= eCol; i++) {
+                ans.push_back(mat[sRow][i]);
             }
-            //right
-            for(int i=sRow+1; i<=eRow; i++) {
-                ans.push_back(matrix[i][eCol]);
+            //Right
+            for(int i=sRow+1; i<= eRow; i++) {
+                ans.push_back(mat[i][eCol]);
             }
-            //bottom
-            for(int j=eCol-1; j>=sCol; j--) {
+            //Bottom
+            for(int i=eCol-1; i>=sCol; i--) {
                 if(sRow == eRow) {
                     break;
                 }
-                ans.push_back(matrix[eRow][j]);
+                ans.push_back(mat[eRow][i]);
             }
-            //left
+            //Left
             for(int i=eRow-1; i>=sRow+1; i--) {
                 if(sCol == eCol) {
                     break;
                 }
-                ans.push_back(matrix[i][sCol]);
+                ans.push_back(mat[i][sCol]);
             }
-            //update condns.
-            sRow++; eCol--; eRow--; sCol++;
+            //Update condns.
+            sRow++; eRow--; sCol++; eCol--;
         }
         return ans;
     }
