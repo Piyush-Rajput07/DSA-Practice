@@ -1,1 +1,1 @@
-<h2>count-number-of-nice-subarrays Notes</h2><hr>[ Time taken: 3 d 1 hr 58 m 31 s ]
+<h2>count-number-of-nice-subarrays Notes</h2><hr>[ Time taken: 32 m 17 s ]
