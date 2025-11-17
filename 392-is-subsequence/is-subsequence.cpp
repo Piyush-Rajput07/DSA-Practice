@@ -1,15 +1,20 @@
 class Solution {
 public:
+    bool isSubseq(string s, string t, int n, int m) {
+        if(m == 0)  return true;
+        if(n == 0)  return false;
+
+        if(s[m-1] == t[n-1]) {
+            return isSubseq(s, t, n-1, m-1);
+        }
+        else {
+            return isSubseq(s, t, n-1, m);
+        }
+        return true;
+    }
     bool isSubsequence(string s, string t) {
         int m = s.length(), n = t.length();
-        
-        if(n < m)   return false;
-        
-        int j = 0;
-        for(int i=0; i<n && j<m; i++) {
-            if(s[j] == t[i])
-                j++;
-        }
-        return (j == m);
+
+        return isSubseq(s, t, n, m);
     }
 };
