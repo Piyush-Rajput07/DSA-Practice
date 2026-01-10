@@ -1,8 +1,8 @@
 class Solution {
 public:
-    bool allZero(vector<int>& freq) {
-        for(int i=0; i<freq.size(); i++) {
-            if(freq[i] != 0) {
+    bool allZeroes(vector<int> counter) {
+        for(int &i : counter) {
+            if(i != 0) {
                 return false;
             }
         }
@@ -10,29 +10,30 @@ public:
     }
     vector<int> findAnagrams(string s, string p) {
         int n = s.length();
-        int m = p.length();
-        vector<int> freq(26, 0);
+        vector<int> counter(26, 0);
 
-        for(int i=0; i<m; i++) {
-            freq[p[i]-'a']++;
+        //store the freq of each character
+        for(int i=0; i<p.length(); i++) {
+            counter[p[i]-'a']++;
         }
 
         int i = 0, j = 0;
-        vector<int> res;
+        vector<int> result;
 
         while(j < n) {
-            freq[s[j]-'a']--;
+            counter[s[j]-'a']--;
 
-            if((j - i + 1) == m) {
-                if(allZero(freq)) {
-                    res.push_back(i);
+            if(j - i + 1 == p.length()) {
+                if(allZeroes(counter)) {
+                    result.push_back(i);
                 }
 
-                freq[s[i]-'a']++;
+                counter[s[i]-'a']++;
                 i++;
             }
+
             j++;
         }
-        return res;
+        return result;
     }
 };
