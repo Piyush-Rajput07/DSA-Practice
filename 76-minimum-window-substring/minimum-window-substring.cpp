@@ -2,21 +2,20 @@ class Solution {
 public:
     string minWindow(string s, string t) {
         int n = s.length();
+        unordered_map<char, int> mp;
 
         if(t.length() > n) {
             return "";
         }
 
-        unordered_map<char, int> mp;
-
-        //store freq of chars in t
+        //store freq of each char of t
         for(char ch : t) {
             mp[ch]++;
         }
 
-        int reqCount = t.length();
+        int reqdCount = t.length();
         int minWindowSize = INT_MAX;
-        int start_i = 0;
+        int start_i = 0; //to keep track of substr to return
 
         int i = 0, j = 0;
 
@@ -24,12 +23,12 @@ public:
             char ch = s[j];
 
             if(mp[ch] > 0) {
-                reqCount--;
+                reqdCount--;
             }
 
             mp[ch]--;
 
-            while(reqCount == 0) {
+            while(reqdCount == 0) {
                 int currWindowSize = j-i+1;
 
                 if(currWindowSize < minWindowSize) {
@@ -40,9 +39,10 @@ public:
                 mp[s[i]]++;
 
                 if(mp[s[i]] > 0) {
-                    reqCount++;
+                    reqdCount++;
                 }
-                i++;   
+
+                i++;
             }
             j++;
         }
