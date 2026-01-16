@@ -2,16 +2,14 @@ class Solution {
 public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
         int n = nums.size();
-
         unordered_set<int> s;
-
         int i = 0, j = 0;
 
         while(j < n) {
-
-            if(abs(i-j) > k) {
+            
+            if(abs(i - j) > k) {
                 s.erase(nums[i]);
-                i++; //shrink
+                i++;
             }
 
             if(s.find(nums[j]) != s.end()) {
@@ -21,7 +19,6 @@ public:
             s.insert(nums[j]);
             j++;
         }
-        
         return false;
     }
 };
