@@ -8,21 +8,25 @@ public:
         int culpritIdx = -1;
 
         for(int i=0; i<nums.size(); i++) {
-            if(nums[i] < minK || nums[i] > maxK)
+            if(nums[i] < minK || nums[i] > maxK) {
                 culpritIdx = i;
+            }
 
-            if(nums[i] == minK) 
+            if(nums[i] == minK) {
                 minkPosition = i;
+            }
 
-            if(nums[i] == maxK)
+            if(nums[i] == maxK) {
                 maxkPosition = i;
+            }
 
-            long long smaller = min(minkPosition, maxkPosition);
+            long long smallerIdx = min(minkPosition, maxkPosition);
 
-            long long temp = smaller - culpritIdx;
+            long long temp = smallerIdx - culpritIdx;
 
-            ans += (temp > 0) ? temp : 0;
+            ans += (temp <= 0) ? 0 : temp; 
         }
+        
         return ans;
     }
 };
