@@ -1,37 +1,35 @@
 class Solution {
 public:
     vector<int> getAverages(vector<int>& nums, int k) {
-        if(k == 0) return nums;
-
         int n = nums.size();
-        
-        vector<int> res(n, -1);
+        vector<int> ans(n, -1);
 
-        if(n < 2*k+1) return res;
+        if(n < 2*k + 1) return ans;
 
+        long long window = 0;
         int l = 0, r = 2*k;
         int i = k;
-        long long window = 0;
 
-        for(int p=l; p<=r; p++) {
-            window += nums[p];
+        for(int j=l; j<=2*k; j++) {
+            window += nums[j];
         }
 
-        int temp = 2*k + 1;
-        int avg = window/temp;
-
-        res[i] = avg;
-        i++; r++;
+        long long avg = window / (2*k +1);
+        ans[i] = avg;
+        i++;
+        r++;
 
         while(r < n) {
-            int newN = nums[r];
-            int gone = nums[l];
+            int out_of_window = nums[l];
+            int new_to_window = nums[r];
 
-            window = window - gone + newN;
-
-            res[i] = window/temp;
-            i++; r++; l++;
+            window = window + new_to_window - out_of_window;
+            ans[i] = window / (2*k + 1);
+            i++;
+            r++;
+            l++;
         }
-        return res;
-    }   
+        
+        return ans;
+    }
 };
